@@ -1,2 +1,2 @@
 JWT_SECRET=myjwt
-LOG_LEVEL=debug
+LOG_LEVEL=DEBUG
