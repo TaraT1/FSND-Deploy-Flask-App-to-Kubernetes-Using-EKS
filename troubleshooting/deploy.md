@@ -147,6 +147,18 @@ kubectl get services simple-jwt-api -o wide
  ![Fetch endpoints](./images/endpoint.jpg)
 
 
+### Step 10 - Test endpoints
+
+You can either test whole endpoints through CLI or at least see the Healthy endpoint on your browser
+
+```shell script
+export URL="a403fa53a96514f12948dd65f87550c1-1498351496.us-east-2.elb.amazonaws.com"
+export TOKEN=`curl -d '{"email":"test@test.com","password":"test"}' -H "Content-Type: application/json" -X POST $URL/auth  | jq -r '.token'`
+curl --request GET $URL:80/contents -H "Authorization: Bearer ${TOKEN}" | jq
+```
+ ![Running endpoint](./images/running.jpg)
+
+
 ### Common issues
 
 * Syntax error: newline unexpected [Guide to be done]
