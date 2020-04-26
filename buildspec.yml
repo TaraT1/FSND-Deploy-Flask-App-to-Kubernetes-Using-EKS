@@ -1,9 +1,5 @@
 ---
 version: 0.2
-
-  https://amazon-eks.s3-us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/kubectl /usr/bin/kubectl
-  ADD https://amazon-eks.s3-us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator /usr/bin/aws-iam-authenticator
-
 phases:
   install:
     commands:
@@ -22,7 +18,6 @@ phases:
   build:
     commands:
       - docker build --tag $REPOSITORY_URI:$TAG .
-
   post_build:
     commands:
       - docker push $REPOSITORY_URI:$TAG
