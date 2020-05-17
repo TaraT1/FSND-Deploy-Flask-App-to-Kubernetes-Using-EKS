@@ -1,12 +1,4 @@
 apiVersion: v1
-kind: Secret
-metadata:
-  name: jwtsecret
-type: Opaque
-stringData:
-  token: JWT_SECRET
----
-apiVersion: v1
 kind: Service
 metadata:
   name: simple-jwt-api
@@ -39,16 +31,13 @@ spec:
     spec:
       containers:
         - name: simple-jwt-api
-          env:
-            - name: SECRET_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: jwtsecret
-                key: token
           image: CONTAINER_IMAGE
           securityContext:
             privileged: false
             readOnlyRootFilesystem: false
             allowPrivilegeEscalation: false
+          env:
+          - name: JWT_SECRET
+            value: JWT_SECRET_VALUE
           ports:
             - containerPort: 8080
