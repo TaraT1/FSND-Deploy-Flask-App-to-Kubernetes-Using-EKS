@@ -64,7 +64,7 @@ def health():
 
 
 @APP.route('/env', methods=['POST', 'GET'])
-def health():
+def env_check():
     return jsonify(JWT_SECRET)
 
 
