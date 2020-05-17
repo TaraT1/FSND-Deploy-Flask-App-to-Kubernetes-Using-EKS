@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: JWT_SECRET
+  name: jwtsecret
 type: Opaque
 data:
   username: YWRtaW4=
+stringData:
+  username: administrator
 ---
 apiVersion: v1
 kind: Service
