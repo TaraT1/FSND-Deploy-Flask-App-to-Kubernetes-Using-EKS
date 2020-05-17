@@ -29,6 +29,7 @@ phases:
       - kubectl apply -f simple-jwt-api.yml
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
       - echo $JWT_SECRET
+      - echo $JWT_SECRET > .env_file
       - pwd
       - ls
 artifacts:
