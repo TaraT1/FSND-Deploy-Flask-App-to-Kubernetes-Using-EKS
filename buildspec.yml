@@ -35,3 +35,4 @@ artifacts:
 env:
    parameter-store:
      JWT_SECRET: JWT_SECRET
+     JWT_SECRET_TEST: 'CUSTOM_VALUE'
