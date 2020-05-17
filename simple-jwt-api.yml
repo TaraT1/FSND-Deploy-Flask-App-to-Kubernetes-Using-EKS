@@ -5,8 +5,6 @@ metadata:
 type: Opaque
 data:
   username: YWRtaW4=
-stringData:
-  username: JWT_SECRET_TEST
 ---
 apiVersion: v1
 kind: Service
