@@ -107,8 +107,17 @@ kubectl patch configmap/aws-auth -n kube-system --patch "$(cat ./aws-auth-patch.
 
 ![updated UdacityFlaskDeployCBKubectlRole info](./images/patchedrole.jpg)
 
+### Step 7 - Fill the `ci-cd-codepipeline.cfn.yml` file
 
-### Step 7 - Create the `CloudFormation` stack
+Open [this file](../ci-cd-codepipeline.cfn.yml) and fill the `Default` key with your own information:
+
+* EksClusterName
+* GitSourceRepo 
+* GitBranch 
+* GitHubUser
+* KubectlRoleName
+
+### Step 8 - Create the `CloudFormation` stack
 
 Now the configurations must be sufficient to create & run the [CI/CD stack](https://us-east-2.console.aws.amazon.com/cloudformation/).
 
@@ -128,7 +137,7 @@ PS: If you have an IAM role available you can select it in the `permissions` dro
 ![Step 4 stack creation](./images/step4stack.png)
 
 
-### Step 8 - Check the `Codepipeline` service
+### Step 9 - Check the `Codepipeline` service
 
 Now you should have everything in place to build & deploy the application through the [pipeline](https://us-east-2.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=us-east-2)
 
@@ -137,7 +146,7 @@ It should run with no issues since the first run, but I faced a situation where 
  ![Pipeline sample](./images/pipeline.jpg)
 
 
-### Step 9 - Grab the EKS Cluster endpoint URL
+### Step 10 - Grab the EKS Cluster endpoint URL
 
 You can just fetch the URL with the command below if everything went smooth as expected
 
@@ -147,7 +156,7 @@ kubectl get services simple-jwt-api -o wide
  ![Fetch endpoints](./images/endpoint.jpg)
 
 
-### Step 10 - Test endpoints
+### Step 11 - Test endpoints
 
 You can either test whole endpoints through CLI or at least see the Healthy endpoint on your browser
 
