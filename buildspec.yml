@@ -28,6 +28,7 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
       - kubectl apply -f simple-jwt-api.yml
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
+      - echo $JWT_SECRET
       - pwd
       - ls
 artifacts:
@@ -35,4 +36,3 @@ artifacts:
 env:
    parameter-store:
      JWT_SECRET: JWT_SECRET
-     JWT_SECRET_TEST: 'CUSTOM_VALUE'

@@ -14,7 +14,6 @@ from flask import Flask, jsonify, request, abort
 
 
 JWT_SECRET = os.environ.get('JWT_SECRET', 'abc123abc1234')
-JWT_SECRET_TEST = os.environ.get('JWT_SECRET_TEST', 'TEST')
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')
 
 
@@ -67,11 +66,6 @@ def health():
 @APP.route('/env', methods=['POST', 'GET'])
 def env_check():
     return jsonify(JWT_SECRET)
-
-
-@APP.route('/custom_env', methods=['POST', 'GET'])
-def env_check():
-    return jsonify(JWT_SECRET_TEST)
 
 
 @APP.route('/auth', methods=['POST'])
