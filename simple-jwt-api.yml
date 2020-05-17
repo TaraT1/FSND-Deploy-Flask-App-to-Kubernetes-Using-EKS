@@ -4,7 +4,7 @@ metadata:
   name: jwtsecret
 type: Opaque
 stringData:
-  username: JWT_SECRET
+  token: JWT_SECRET
 ---
 apiVersion: v1
 kind: Service
@@ -39,6 +39,12 @@ spec:
     spec:
       containers:
         - name: simple-jwt-api
+          env:
+            - name: SECRET_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: jwtsecret
+                key: token
           image: CONTAINER_IMAGE
           securityContext:
             privileged: false
