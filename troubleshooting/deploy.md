@@ -4,6 +4,12 @@
 * `kubectl` installed
 * Bash-enabled terminal (e.g GIT Bash on Windows)
 
+### Disclosure
+
+> Pay attention if your cluster file is named `simple_jwt_api` or `simple-jwt-api`; You may have to adjust your code  to that.
+>
+>This guide uses only `simple-jwt-api`, with dashes.
+
 
 ### Step 1 - Login to AWS CLI
 
