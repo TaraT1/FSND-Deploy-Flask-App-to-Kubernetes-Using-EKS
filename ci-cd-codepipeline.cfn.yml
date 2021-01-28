@@ -9,22 +9,23 @@ Parameters:
   EksClusterName:
     Type: String
     Description: The name of the EKS cluster created
-    Default: 
+    Default: eksctl-simple-jwt-api-cluster
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter the EKS cluster name
 
   GitSourceRepo:
     Type: String
+    #Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
     Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
-    Default: 
+    Default: https://github.com/TaraT1/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository name
 
   GitBranch:
     Type: String
-    Default: master
+    Default: main
     Description: GitHub git repository branch - change triggers a new build
     MinLength: 1
     MaxLength: 100
@@ -33,14 +34,15 @@ Parameters:
   GitHubToken:
     Type: String
     NoEcho: true
-    Description: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
+    #Description: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
+    Description: f3bb6c34765a2db04126d9e2eb44b9c7ef2e7938
     MinLength: 3
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub personal access token
 
   GitHubUser:
     Type: String
-    Default:
+    Default: TaraT1
     Description: GitHub username or organization
     MinLength: 3
     MaxLength: 100
@@ -48,7 +50,8 @@ Parameters:
 
   CodeBuildDockerImage:
     Type: String
-    Default: aws/codebuild/standard:4.0
+    #Default: aws/codebuild/standard:4.0
+    Default: aws/codebuild/docker:17.09.0
     Description: AWS CodeBuild Docker optimized image
     MinLength: 3
     MaxLength: 100
@@ -56,7 +59,7 @@ Parameters:
 
   KubectlRoleName:
     Type: String
-    Default: 
+    Default: UdacityFlaskDeployCBKubectlRole
     Description: IAM role used by kubectl to interact with EKS cluster
     MinLength: 3
     MaxLength: 100
@@ -180,7 +183,7 @@ Resources:
               Service:
                 - lambda.amazonaws.com
       Policies:
-        - PolicyName: codepipeline-access
+        - PolicyName: codepGitHub source repository - must contain a Dockerfile and buildspec.yml in the baseipeline-access
           PolicyDocument:
             Version: 2012-10-17
             Statement:
