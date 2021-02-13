@@ -9,7 +9,7 @@ Parameters:
   EksClusterName:
     Type: String
     Description: The name of the EKS cluster created
-    Default: eksctl-simple-jwt-api-cluster
+    Default: simple-jwt-api
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter the EKS cluster name
@@ -18,7 +18,8 @@ Parameters:
     Type: String
     #Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
     Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
-    Default: TaraT1/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
+    Default: FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
+    #Default: TaraT1/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository name
@@ -35,7 +36,8 @@ Parameters:
     Type: String
     NoEcho: true
     #Description: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
-    Description: f3bb6c34765a2db04126d9e2eb44b9c7ef2e7938
+    #Description: f3bb6c34765a2db04126d9e2eb44b9c7ef2e7938 - not sure where this came from.
+    Description:  6b2dba6ab12001d82713818a163e63efc6225c80
     MinLength: 3
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub personal access token
@@ -159,6 +161,7 @@ Resources:
 
             response_body = json.dumps(response)
             headers = {'content-type': '', "content-length": str(len(response_body)) }
+            #headers = {'content-type': '', "content-length": str(len(response_body)) }
             put_response = requests.put(event['ResponseURL'], headers=headers, data=response_body)
             return response
 
