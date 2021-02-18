@@ -16,7 +16,6 @@ Parameters:
 
   GitSourceRepo:
     Type: String
-    #Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
     Description: GitHub source repository - must contain a Dockerfile and buildspec.yml in the base
     Default: FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
     #Default: TaraT1/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
@@ -35,8 +34,7 @@ Parameters:
   GitHubToken:
     Type: String
     NoEcho: true
-    #Description: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
-    Description:  6b2dba6ab12001d82713818a163e63efc6225c80
+    Description: GitHub API token - see https://github.com/blog/1509-personal-api-tokens
     MinLength: 3
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub personal access token
@@ -59,6 +57,8 @@ Parameters:
     ConstraintDescription: You must enter a CodeBuild Docker image
 
   KubectlRoleName:
+    #Added type: string in response to parameters missing type error
+    Type: String
     Default: UdacityFlaskDeployCBKubectlRole
     Description: IAM role used by kubectl to interact with EKS cluster
     MinLength: 3
