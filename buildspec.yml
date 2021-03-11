@@ -2,21 +2,32 @@
 version: 0.2
 phases:
   install:
+    runtime-versions:
+      python3.7
     commands:
-      - curl -sS -o aws-iam-authenticator https://amazon-eks.s3.us-east-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator
-      - curl -sS -o kubectl https://amazon-eks.s3.us-east-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/kubectl
+      - echo 'about to call dockerd'
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - curl -sS -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator
+      - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator
+      - echo `kubectl version`
       - export PATH=$PWD/:$PATH
-      - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
+      - python -m pip install --upgrade --force pip
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+        - echo $REPOSITORY_URI
+        - echo $TAG
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple-jwt-api.yml
-        - sed -i 's@JWT_SECRET_VALUE@'"$JWT_SECRET"'@' simple-jwt-api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
+        - pip install -r requirements.txt
   build:
     commands:
+      - ls -altr
+      - echo $REPOSITORY_URI
+      - echo $TAG
       - docker build --tag $REPOSITORY_URI:$TAG .
   post_build:
     commands:
@@ -27,13 +38,11 @@ phases:
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
-      - echo $JWT_SECRET > .env
-      - kubectl apply -f simple-jwt-api.yml
+      - kubectl apply -f simple_jwt_api.yml
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
-      - pwd
-      - ls
 artifacts:
   files: build.json
+
 env:
    parameter-store:
      JWT_SECRET: JWT_SECRET
