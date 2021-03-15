@@ -1,0 +1,50 @@
+References for Deploy
+Docker and Kubernetes - Full Course for Beginners
+
+https://github.com/jungleBadger/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS/tree/master/troubleshooting/deploy.md
+https://knowledge.udacity.com/questions/476330
+
+https://knowledge.udacity.com/questions/189444
+
+https://knowledge.udacity.com/questions/436958
+
+
+https://knowledge.udacity.com/questions/138255
+
+https://knowledge.udacity.com/questions/74000
+
+troubleshoot troubleshooting
+https://knowledge.udacity.com/questions/338342
+
+-Error: artifacts not found (Docker?)
+https://knowledge.udacity.com/questions/301362
+https://knowledge.udacity.com/questions/285613
+https://knowledge.udacity.com/questions/280058
+
+eks cluster t2.micro instead of m5
+From <https://knowledge.udacity.com/questions/119862>
+
+https://knowledge.udacity.com/questions/116111
+
+create nano cluster using yaml
+https://knowledge.udacity.com/questions/488075
+
+https://eksctl.io/usage/creating-and-managing-clusters/
+
+iam role, user
+https://stackoverflow.com/questions/46199680/difference-between-iam-role-and-iam-user-in-aws
+https://knowledge.udacity.com/questions/283407
+
+permission on role
+https://knowledge.udacity.com/questions/79059
+
+https://medium.com/@fullsour/how-to-switch-user-on-the-aws-cli-77c2b314e12d
+
+empty server  
+https://knowledge.udacity.com/questions/341769
+ 
+
+
+
+
+
