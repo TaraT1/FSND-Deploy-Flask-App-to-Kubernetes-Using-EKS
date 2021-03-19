@@ -17,7 +17,7 @@ phases:
       - chmod +x ./kubectl ./aws-iam-authenticator
       - echo `kubectl version`
       - export PATH=$PWD/:$PATH
-      - python3 -m pip3 install --upgrade --force pip3
+      - python3 -m pip install --upgrade --force pip
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
