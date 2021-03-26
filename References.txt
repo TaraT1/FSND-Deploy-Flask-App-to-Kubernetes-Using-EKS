@@ -1,3 +1,6 @@
+3.25.21 ip address: 
+aff3e84fc76d041bdb4ed6aba3bf103c-1314216255.us-east-2.elb.amazonaws.com
+
 References for Deploy
 Docker and Kubernetes - Full Course for Beginners
 
@@ -43,10 +46,26 @@ https://medium.com/@fullsour/how-to-switch-user-on-the-aws-cli-77c2b314e12d
 empty server  
 https://knowledge.udacity.com/questions/341769
  
-
-
-
 Docker expose
 https://www.whitesourcesoftware.com/free-developer-tools/blog/docker-expose-port/
 
+kubectl version
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+-k8s v1.19.3
+-
+expose port
+https://www.whitesourcesoftware.com/free-developer-tools/blog/docker-expose-port/
 
+correct kubectl install 
+https://craftbakery.dev/2020/03/01/kubectl-on-windows-10-machine/
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+https://docs.microsoft.com/en-us/windows/wsl/compare-versions
+https://docs.docker.com/docker-for-windows/wsl/
+
+https://github.com/jungleBadger/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS/blob/master/buildspec.yml
+
+my questions 
+https://knowledge.udacity.com/questions/517499
+https://knowledge.udacity.com/questions/508781
+https://knowledge.udacity.com/questions/487713
